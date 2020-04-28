@@ -1,0 +1,31 @@
+<template>
+    <div if:true={something}>
+        i am true        
+    </div>
+    <div if:false={something}>
+        i am false
+    </div>
+
+<template if:true={show}>
+    <div class="slds-p-around_medium lgc-bg">
+        <lightning-input type="text" label="Enter employee Name" value = {ename} onchange={enamehandler}></lightning-input>
+        <lightning-input type="text" label="Enter employee Age" value = {age} onchange={agehandler}></lightning-input>
+        <lightning-input type="text" label="Enter employee Salary" value = {salary} onchange={salhandler}></lightning-input>
+        <p class="slds-p-around_medium lgc-bg">
+            <lightning-button label="Save" onclick={saveHandler}></lightning-button>
+        </p>
+    </div>
+</template>
+<template if:false={show}>
+    <p class="slds-p-around_medium lgc-bg">
+        Employee Name : {ename} <br>
+        Employee Age : {age} <br>
+        Employee Salary : {salary}
+    </p>
+        <p class="slds-p-around_medium lgc-bg">
+            <lightning-button label="Back" onclick={backHandler}></lightning-button>
+        </p>
+
+    </p>
+</template>
+</template>

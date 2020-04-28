@@ -101,3 +101,14 @@ export default class DataBinding2 extends LightningElement {
 
 HTML to JS -> done by Handler
 JS to HTML -> done by track
+
+
+*************************************************************************************************
+		Rendering DOM elements Conditionally
+*************************************************************************************************
+- Use if:true|false directive with nested template tag
+	if:true|false = {property}
+
+**************************************************************************************************
+		Rendering a list using iterator directive
+***************************************************************************************************

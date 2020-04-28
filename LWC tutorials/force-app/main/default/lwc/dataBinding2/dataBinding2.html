@@ -1,0 +1,34 @@
+<template>
+    <lightning-card title="Hello">
+        <div class="slds-a-around-medium">
+        <p class="slds-p-around_medium lgc-bg">Hello {name}</p>
+    </div>
+    <div class="slds-p-around_medium lgc-bg">
+
+        <lightning-input label="Enter Name" value={name} onchange={changeHandler}></lightning-input>
+    </div>
+    </lightning-card>
+
+    <lightning-card title="Employee Details">
+        <div class="slds-p-around_medium lgc-bg">
+            <p class="slds-p-around_medium lgc-bg">
+                Employee Name : {ename} <br>
+                Employee Age : {age} <br>
+                Employee Salary : {salary}
+
+
+            </p>
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-input type="text" label="Enter employee Name" value = {ename} onchange={enamehandler}></lightning-input>
+                <lightning-input type="text" label="Enter employee Age" value = {age} onchange={agehandler}></lightning-input>
+                <lightning-input type="text" label="Enter employee Salary" value = {salary} onchange={salhandler}></lightning-input>
+            </div>
+        </div>
+
+
+
+        
+
+    </lightning-card>
+
+</template>
