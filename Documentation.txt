@@ -1,0 +1,36 @@
+// DevHub org in order to create scratch orgs
+Scratch orgs has expiry of max 30 days
+1 devhub can have max 25 scratch orgs
+Scratch orgs are code driven
+enable devhub in setup
+
+-------------Commands---------------------
+
+****************************create project**************************************************
+//sfdx force:project:create -n "LWC tutorials"
+	force is the namespace, project is topic/category of commands and under that category there 		is a command called create.
+
+*******authorize devhub to create a scratch org and use it ***********************************
+//sfdx force:auth:web:login -a lwcSneha -d
+	auth is topic
+	-a is alias
+	-d is to make it default
+
+***********Create Scratch Orgs**********************************
+// Make changes in the scratch org config file ->
+	config->project-scratch-def.json -> add attribute-> "hasSampleData":true
+
+//sfdx force:org:create -a lwcScratchOrg1 -d 30 -f .\config\project-scratch-def.json
+	-a for alias
+	-d for duration
+	-f for location of config file
+
+//Set the scratch org as the default org
+	ctrl+shft+P => sfdx set a default org and choose the scratch org
+
+************************Open Scratch Org**************************************
+//sfdx force:org:open
+
+**************************Common Commands**************************************
+//sfdx commands
+//sfdx force:org:create --help -> to get to know the parameters needed and more info on that 				particular command
