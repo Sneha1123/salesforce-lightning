@@ -34,3 +34,70 @@ enable devhub in setup
 **************************Common Commands**************************************
 //sfdx commands
 //sfdx force:org:create --help -> to get to know the parameters needed and more info on that 				particular command
+
+----------------------Create Lightning Component------------------------------------------------
+//sfdx force:lightning:component:create -n FirstLightningComponent -d force-app\main\default\lwc
+
+----------------------Create Apex Class---------------------------------------------------------
+//sfdx force:apex:class:create -n FirstApexViaVsCode -d .\force-app\main\default\classes
+
+-------------------------Push to scratch org----------------------------------------------------
+//sfdx force:source:push
+
+**********************************************************************************************
+					RUN LWC LOCALLY
+**********************************************************************************************
+URL - https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.get_started_local_dev_setup
+
+in cmd -> sfdx plugins:install @salesforce/lwc-dev-server
+//sfdx plugins:update
+	for updates
+//sfdx force:lightning:lwc:start
+	start local server
+
+************************************************************************************************
+Building First Lightning web component
+************************************************************************************************
+//sfdx force:lightning:component:create -n FirstExample -d .\force-app\main\default\lwc --type lwc
+
+In order to make the component available for the lightning app builder change the <isExposed> attribute in the .xml file of the component from false to true.
+
+In order to make the component available for record page, home page and app page --> set the targets in the xml file(aka config file)
+
+	<targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+
+
+***************************Data Binding***********************************************************
+In HTML => {property}
+	eg. <template>
+    <lightning-card title="Hello">
+        <div class="slds-a-around-medium">
+        <p class="slds-p-horizontal_small">Hello {name}</p>
+    </div>
+    <div class="slds-a-around-medium">
+
+        <lightning-input label="Enter Name" value={name} onchange={changeHandler}></lightning-input>
+    </div>
+    </lightning-card>
+</template>
+
+In JS => importing track to make the property reactive so that whenever the property value changes, it renders the component.
+
+	eg. 
+	import { LightningElement,track } from 'lwc';
+
+export default class DataBinding2 extends LightningElement {
+    @track name = "World";
+    
+    changeHandler(event){
+        this.name = event.target.value;
+    }
+}
+
+
+HTML to JS -> done by Handler
+JS to HTML -> done by track
