@@ -1,9 +1,9 @@
 import { LightningElement,track } from 'lwc';
 
 export default class SimpleInterestCalculator5 extends LightningElement {
-    @track principal;
-    @track roi;
-    @track time;
+     principal;
+     roi;
+     time;
     @track showValue=false;
     @track si;
 

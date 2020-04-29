@@ -144,3 +144,22 @@ iterator:iteratorName={array}
                </li>
            </template>
        </ul>
+
+
+
+**************************************************************************************************
+				Public Properties in LWC
+**************************************************************************************************
+- To make properties public and reactive so that they can be used by another component -> use api decorator (@api)
+- In child component(basically tht declares the public properties) -> the public properties can have default values only.
+- Parent component that uses the child component in the markup can set the values.
+- In order to call child component from parent component(same for attribute values of that property) 	-> use kebab case notation
+- Property in .js file is mapped to the attribute in the .html file -> so in js its camel case and in html it is kebab case
+- Make config changes on the parent component bcz that is what is going to be pushed to lightning app.
+- Take proper care while naming.
+
+***************************************************************************************************
+			Difference between private reactive and private non reactive properties
+****************************************************************************************************
+- Reactive Property re-renders the component ie the changed value is vivible on the screen whereas non- reactive property doesnt ie untill the component renders the value is non visible.
+- 

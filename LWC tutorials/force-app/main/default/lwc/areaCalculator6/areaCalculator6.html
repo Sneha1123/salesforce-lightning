@@ -1,0 +1,56 @@
+<template>
+        
+    <div class="c-container">
+        <lightning-layout>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+               <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="number" label="Enter side of square" value={side} onchange={sideHandler}></lightning-input>
+        </div>
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+               <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="number" label="Enter length of rectangle" value={length} onchange={lengthHandler}></lightning-input>
+        </div>
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+                <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="number" label="Enter breadth of rectangle" value={breadth} onchange={breathHandler}></lightning-input>
+        </div>
+        
+            </lightning-layout-item>
+        
+        <lightning-layout-item flexibility="auto" padding="around-small">
+            <div class="slds-p-around_medium lgc-bg">
+        <lightning-input type="number" label="Enter radius of circle" value={radius} onchange={radiusHandler}></lightning-input>
+    </div>
+    
+        </lightning-layout-item>
+        
+            
+        </lightning-layout>
+        <lightning-layout>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-button variant="brand" label="Square" title="Primary action" onclick={SquareHandler} class="slds-m-left_x-small"></lightning-button></div>
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-button variant="brand" label="Rectangle" title="Primary action" onclick={RectangleHandler} class="slds-m-left_x-small"></lightning-button></div>
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto" padding="around-small">
+                <div class="slds-p-around_medium lgc-bg">
+                    <lightning-button variant="brand" label="Circle" title="Primary action" onclick={CircleHandler} class="slds-m-left_x-small"></lightning-button></div>
+                    </lightning-layout-item>
+                    <lightning-layout-item flexibility="auto" padding="around-small">
+                        <div class="slds-p-around_medium lgc-bg">
+                            <lightning-button variant="brand" label="Reset" title="Primary action" onclick={ResetHandler} class="slds-m-left_x-small"></lightning-button></div>
+                            </lightning-layout-item>
+                </lightning-layout>
+            <template if:true={showValue}>
+        <lightning-card title="Area">
+            <p class="slds-p-around_medium lgc-bg"> The area is {area}</p>
+
+        </lightning-card>
+    </template>
+    </div>
+</template>
