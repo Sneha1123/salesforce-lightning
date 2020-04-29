@@ -1,0 +1,31 @@
+<template>
+        
+    <div class="c-container">
+        <lightning-layout>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+               <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="number" label="Enter Principal" value={principal} onchange={principalhandler}></lightning-input>
+        </div>
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+               <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="number" label="Enter rate of interest" value={roi} onchange={roihandler}></lightning-input>
+        </div>
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+                <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="number" label="Enter no. of years" value={time} onchange={timehandler}></lightning-input>
+        </div>
+            </lightning-layout-item>
+            
+        </lightning-layout>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-button variant="brand" label="Calculate" title="Primary action" onclick={calculateHandler} class="slds-m-left_x-small Button_align"></lightning-button></div>
+            <template if:true={showValue}>
+        <lightning-card title="Simple interest">
+            <p class="slds-p-around_medium lgc-bg"> The Simple Interest is {si}</p>
+
+        </lightning-card>
+    </template>
+    </div>
+</template>
