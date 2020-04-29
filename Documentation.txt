@@ -112,3 +112,35 @@ JS to HTML -> done by track
 **************************************************************************************************
 		Rendering a list using iterator directive
 ***************************************************************************************************
+- Either by using for:each directive or the iterative directive inside of template tag
+- Iterator directive has an advantage as u can have first and last properties in that.
+- Always use a key directive to assign a unique Id to each item so that if a particular item changes then the framework will use the Id to re render only the particular item changed, therefore performance optimization done.
+
+-----------------------------FOREACH-----------------------------------------------
+for:each directive use for:item = "currentItem" to access the current item
+
+ 	<ul>
+           <template for:each={contacts} for:item="contact">
+           <li key={contact.id}>{contact.name},{contact.title}</li>
+        </template>
+       </ul>
+
+
+-----------------------------ITERATIVE---------------------------------------------
+iterator:iteratorName={array}
+
+-Using iteratorName we can access the below mentioned properties
+	value
+	index
+	first - boolean value
+	last - Boolean value
+
+ <ul>
+           <template iterator:it={contacts}>
+               <li key={it.value.id}>
+                   <div if:true={it.first} class="iterator-first"></div>
+                   {it.value.name},{it.value.title}
+                   <div if:true={it.last} class="iterator-last"></div>
+               </li>
+           </template>
+       </ul>
