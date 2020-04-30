@@ -162,4 +162,50 @@ iterator:iteratorName={array}
 			Difference between private reactive and private non reactive properties
 ****************************************************************************************************
 - Reactive Property re-renders the component ie the changed value is vivible on the screen whereas non- reactive property doesnt ie untill the component renders the value is non visible.
-- 
+
+****************************************************************************************************
+			Boolean Properties in LWC
+****************************************************************************************************
+- Are public and reactive and hence uses @api decorator.
+- Default value always false
+- If child component used in parent then value becomes true otherwise remains false
+ 
+****************************************************************************************************
+			Component Lifecycle Hooks
+****************************************************************************************************
+Step 1: Constructor of Parent component is called.
+Step 2: Check if any public property to be updated??
+	Step 2.1: then update the public property value
+Step 3: Parent Component inserted into DOM
+Step 4: Connected Callback() called on Parent
+Step 5: Parent rendered.
+Step 6: Constructor of Child component is called.
+Step 7: Check if any public property to be updated??
+	Step 7.1: then update the public property value
+Step 8: Child Component inserted into DOM
+Step 9: Connected Callback() called on Child
+Step 10: Child rendered.
+Step 11: Rendered callback() called on child.
+Step 12: Rendered callback() called on Parent.
+
+--------------------------------When Component instance is removed from the DOM---------------------
+Step 1: Parent Component removed from DOM
+Step 2: Disconnected callback() called on Parent
+Step 3: Child Component removed from DOM
+Step 4: Disconnected callback() called on Child. 
+
+****************************************************************************************************
+			Component Communication through events
+****************************************************************************************************
+3 ways:
+1. Parent to child -> Communication using methods in LWC
+2. Child to Parent -> Custom event Communication in LWC
+3. Two completely unrelated components -> Publish and subscriber model
+
+------------------------------Parent to child-------------------------------------------------------
+- In Aura components, child component methods could be called by the parent component by using <aura:method>
+Same is done in case of LWC -> instead of aura methods they are javascript methods
+@api decorator used in child methods which needs to be exposed so that it can be consumed by the parent component using javascript API.
+
+- In parent component -> this.template.querySelector('c-todo').methodName(event.target.value);
+
