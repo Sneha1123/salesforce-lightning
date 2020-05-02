@@ -209,3 +209,24 @@ Same is done in case of LWC -> instead of aura methods they are javascript metho
 
 - In parent component -> this.template.querySelector('c-todo').methodName(event.target.value);
 
+-----------------------------Child to Parent--------------------------------------------------------
+- Use Custom events
+- Child component will create and dispatch the event
+- Parent component is responsible for handling the event
+- Create an event -> (done inside child)
+	Use customEvent() constructor and pass custom event name and details of the event.
+	new customEvent(eventName, props);
+
+- Dispatch an event -> (done inside child)
+	EventTarget.dispatchEvent() method
+	this.dispatchEvent(new customEvent(eventname, props)); //eventname should always be in 	lowercase
+
+- Ways to handle an event:
+	1. declaration via HTML -> add 'on' prefix in the eventName in the parent component during 		calling the child component.
+		<c-todo oneventName={listenerHandler}>
+	2. using JS method addEventListner() ->
+		this.template.addEventListner('eventName', this.handleNotification.bind(this));
+		when doing this add bubbles:true in props also for event initialization
+
+ 
+
