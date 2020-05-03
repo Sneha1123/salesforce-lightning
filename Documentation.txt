@@ -229,4 +229,34 @@ Same is done in case of LWC -> instead of aura methods they are javascript metho
 		when doing this add bubbles:true in props also for event initialization
 
  
+----------------------------------Unrelated components-----------------------------
+- Using Publish-Subscriber model.
+- similar to application events in aura component.
+- Has 2 different types of components:
+	publisher: can have multiple subscribers i.e whenever a publisher fires an event, all the 	subscribers subscribed to tht publisher will recieve that event.
+
+	subscriber: 
+
+- Rules to be followed in this model:
+	1. Need to use the singleton library which follows the publish-subscriber pattern ie there 		is a js file -> pubsub.js which needs to be added.
+	2. Rules to be followed by Publisher:
+		2.a. Publisher needs to fire the events -> needs to import the fireEvent from 				pubsub.js in the publisher component and also define the pageReference as the 				currentPageReference.
+		- fireEvent(pageReference, eventName, eventdetail in the publisher component)	
+			- import {currentPageReference} from 'lightning/navigation';
+			- import {fireEvent} from 'c/pubsub';
+			- fireEvent(this.pageRef, eventName, this.message)
+
+	3. Rules to be followed by subscriber component:
+		3.a. needs to import registerListener, unregisterAllListeners from the pubsub.js file 			in the subscriber component.
+			- import {currentPageReference} from 'lightning/navigation';
+			- import registerListener, unregisterAllListeners} from 'c/pubsub';
+			- connectedCallback(){
+			
+				registerListener('eventName', this.handlerName, this);			
+			}
+			
+			- disconnectedCallback(){
+				unregisterAllListeners(this);
+				}
+
 
