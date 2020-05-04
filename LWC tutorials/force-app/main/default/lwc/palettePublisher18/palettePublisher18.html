@@ -1,3 +1,18 @@
 <template>
-    
+    <lightning-card title="Publisher">
+        <lightning-layout>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+                <lightning-combobox name="colorPalette"
+                label="Choose color"
+                value={color}
+                placeholder="Select color"
+                options={colorOptions}
+                onchange={paletteHandler}>
+            </lightning-combobox>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-button variant="brand" label="Change color" title="Primary action" onclick={colorChangeHandler} class="slds-m-left_x-small">
+
+        </lightning-button>
+    </lightning-card>
 </template>

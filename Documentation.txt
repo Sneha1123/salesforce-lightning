@@ -260,3 +260,15 @@ Same is done in case of LWC -> instead of aura methods they are javascript metho
 				}
 
 
+***************************************************************************************************
+				Access data from Salesforce
+****************************************************************************************************
+- 3 options available:
+	1. using Lightning Data Services
+	2. using Lightning Data Service Base components
+		- best way
+		- bcz no need to write any apex controllers
+	3. using @aura enabled
+		- for complex issues which cant be solved by 2.
+
+
