@@ -1,0 +1,45 @@
+<template>
+    <lightning-card title="create here">
+        <lightning-layout>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+               <div class="custom-box slds-box slds-p-around_medium slds-text-align_center">
+                  <lightning-input type="text" label="Name" onchange={nameHandler}></lightning-input>
+               
+                  <lightning-input type="number" label="Phone" onchange={phoneHandler}></lightning-input>
+               
+                  <lightning-input type="email" label="Email" onchange={emailHandler}></lightning-input>
+               </div>
+               <div class="custom-box slds-box slds-p-around_medium slds-text-align_center">
+                  <lightning-button variant="brand" label="Create Record" onclick={createHandler}>
+   
+                  </lightning-button>
+                  
+               </div>
+           </lightning-layout-item>
+         </lightning-layout>
+         <lightning-layout>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+                <div class="custom-box slds-box slds-p-around_medium slds-text-align_center">
+                    <p>
+                        <lightning-formatted-text 
+                        value={recContactName}
+                        >
+
+                        </lightning-formatted-text>
+                        <lightning-formatted-phone 
+                        value={recContactPhone}
+                        >
+
+                        </lightning-formatted-phone>
+                        <lightning-formatted-email 
+                        value={recContactEmail}
+                        >
+
+                        </lightning-formatted-email>
+                    </p>
+
+                </div>
+                </lightning-layout-item>
+         </lightning-layout>
+    </lightning-card>
+</template>
