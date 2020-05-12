@@ -271,4 +271,48 @@ Same is done in case of LWC -> instead of aura methods they are javascript metho
 	3. using @aura enabled
 		- for complex issues which cant be solved by 2.
 
+---------------------Create record using LDS--------------------------------
+- import {createRecord} from "lightning/uiRecordApi"; // to create records
+- mapping of fields:
+	const fields={'LastName':this.contactName, 'Phone':this.phone, 	'Email':this.email};
+- Adding object api name:
+	const recordInput = {apiName:'Contact', fields};
+-Pass recordInput to createRecord method we imported:
+	createRecord(recordInput).then (response => {
+console.log('created');
+}).catch(error => {
+console.log('error',error.body.message);
+});
 
+
+------------------Create and view using LDS---------------------------------
+- import wire decorator also.
+- import {createRecord, getRecord} from 'lightning/uiRecordApi';
+- create fieldArray specifying the fields needed.
+	const fieldArray = ['contact.lastName', 'contact.Phone', 		'contact.email'];
+- use @wire to get the record through getRecord method.
+	@wire(getRecord{recordId:$recordId, fields:fieldArray}) 	contactRecord;
+
+----------------------------Using Base Components---------------------------
+-3 types of base components:
+	1. lightning-record-form- supports edit,view and read only models
+	2. lightning-record-edit-form - displays editable form
+	3.lightning-record-view-form-components - displays read-only form
+- these compoenets provide layouts to perform create, update and view record without the need of writing apex code.
+
+- <lightning-record-form record-id={recordId} object-api-name="Account" 	mode="view" layout-type="Compact"></lightning-record-form>
+- import api decorator
+
+-------------------Display Records with custom layout using base comp-------
+<lightning-record-view-form record-id={recordId} object-api-name="Account">
+        <div class="slds-grid">
+            <div class = "slds-col slds-size--1-of-2">
+                <lightning-output-field field-name="Name"></lightning-output-field>
+                <lightning-output-field field-name="Phone"></lightning-output-field>
+            </div>
+            <div class = "slds-col slds-size--2-of-2">
+                <lightning-output-field field-name="Industry"></lightning-output-field>
+                <lightning-output-field field-name="Description"></lightning-output-field>
+            </div>
+        </div>
+    </lightning-record-view-form>
