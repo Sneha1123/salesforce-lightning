@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="New Contact">
+        <div class="slds-p-horizontal_small">
+            <lightning-record-edit-form object-api-name="Contact">
+                <lightning-input-field field-name="Name"></lightning-input-field>
+                <lightning-input-field field-name="Phone"></lightning-input-field>
+                <lightning-button variant="Brand" label="Create Contact"  onclick={CreateAccount}  type="submit" class="slds-m-left_x-small"></lightning-button>
+            </lightning-record-edit-form>
+
+        </div>
+    </lightning-card>
+</template>

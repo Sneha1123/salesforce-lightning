@@ -316,3 +316,37 @@ console.log('error',error.body.message);
             </div>
         </div>
     </lightning-record-view-form>
+
+---------------Create new record using base components----------------------
+ <lightning-record-edit-form object-api-name="Contact">
+
+---------------Create and view records using base component----------------
+- use onsuccess attribute to get the id of the record.
+-  <lightning-record-edit-form object-api-name="Contact" onsuccess=	{createContact}>
+
+- @track recordId;
+
+    createContact(event){
+        this.recordId = event.detail.id;
+    }
+}
+
+--------------------Fetch records via Apex----------------------------------
+import getAllContacts from '@salesforce/apex/ContactManger.getContacts';
+export default class FetchRecordsViaApex25 extends LightningElement {
+    @wire (getAllContacts) contacts;
+
+    get contactRecieved(){
+        console.log("Contacts "+this.contacts);
+        console.log("Contacts.data "+this.contacts.data);
+        if(this.contacts){
+            return true;
+        }
+        return false;
+    }
+}
+
+- in apex class follow these rules:
+	1. make methods public or global
+	2. make methods @auraEnabled(cacheable=true)
+	3. methods should be static
