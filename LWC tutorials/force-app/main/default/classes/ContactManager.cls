@@ -1,7 +1,7 @@
 public with sharing class ContactManager {
    @ AuraEnabled (cacheable=true)
-    public static List<Contact> getContacts(){
-        return [select id, Name, Phone from Contact limit 10];
+    public static List<Contact> getContacts(integer limitDefined){
+        return [select id, Name, Phone from Contact limit:limitDefined];
 
     }
 }

@@ -350,3 +350,69 @@ export default class FetchRecordsViaApex25 extends LightningElement {
 	1. make methods public or global
 	2. make methods @auraEnabled(cacheable=true)
 	3. methods should be static
+
+***************************************************************************
+		Toast Notification in LWC
+****************************************************************************
+- import show toast event
+	import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+
+- inside handler call showToast event and then dispatch it
+
+	ErrorHandler(event){
+        
+            const showError = new ShowToastEvent(
+                {
+                    title:"Success",
+                    message:"Success message",
+                    variant:"Success"
+
+                }
+            );
+            this.dispatchEvent(showError);
+    }
+
+
+
+****************************************************************************
+		NAVIGATION SERVICE IN LWC
+****************************************************************************
+- Used to navigate to different pages.
+- use 'lightning\navigation' service.
+- the service is available only in
+	lightning experience
+	lightning communities
+	lightning app
+- Not supported in
+	lightning components for VF
+	lightning out
+- the navigation service uses a pageReference. 
+- PageReference is a JS object that has the following properties:
+	- type (required)
+	- attributes (required)
+	- state 
+- the type generates a unique url format which takes the attributes defined
+- types of pageReferences supported by Salesforce are:
+	Lightning component
+	Knowledge Article
+	Named Page
+	Navigation Item Page
+	Object Page
+	Record Page
+	record Relationship Page
+	Web Page
+- Steps to follow to use navigation service in LWC:
+	1. import {NavigationMixin} from 'lightning/navigation';
+	2. Apply NavigationMixin function to the component's base class
+		export default class <className> extends 		NavigationMixin(LightningElement) {}
+	3. Create a JS pageReference and define its type and attributes
+		({
+			type:'standard__recordPage',
+			attributes:{
+					recordId:this.recordId,
+					objectApiName:"Account",
+					actionName:"edit"
+					}
+		})
+	4. Dispatch the service and pass the pageReference to it:
+		this[NavigationMixin.Navigate](pageReference details 		mentioned in the previous step)

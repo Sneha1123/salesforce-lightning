@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Toast Creation">
+        <div class="slds-notify_container slds-is-relative">
+            <center>
+                <lightning-button-group>
+                    <lightning-button label="Error" variant="destructive" onclick={ErrorHandler}></lightning-button>
+                    <lightning-button label="Success" variant="Success" onclick={successHandler}></lightning-button>
+                    <lightning-button label="Warning" variant="destructive-text" onclick={warningHandler}></lightning-button>
+                    <lightning-button label="Info" variant="Brand" onclick={infoHandler}></lightning-button>
+                </lightning-button-group>
+            </center>
+        </div>
+    </lightning-card>
+</template>
