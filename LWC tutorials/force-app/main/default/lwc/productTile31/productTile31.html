@@ -1,0 +1,17 @@
+<template>
+    <div class ="slds-p-horizontal_small">
+        <a onclick={pictureSelectHandler}>
+            <div class='content'>
+                <img src={pictureUrl} alt="Product Picture" class="product slds-align_absolute-center"/>
+            </div>
+            <div>
+                <p class="slds-align_absolute-center">{name}</p>
+                <p class="slds-align_absolute-center">
+                    MSRP: <lightning-formatted-number format-style="currency" currency-code="INR" value={msrp} class="price" maximum-fraction-digits="0"></lightning-formatted-number>
+                </p>
+            </div>
+
+        </a>
+
+    </div>
+</template>

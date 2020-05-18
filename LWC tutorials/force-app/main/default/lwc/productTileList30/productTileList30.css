@@ -1,0 +1,14 @@
+.content{
+    display: flex;
+    flex-wrap:wrap;
+}
+.slds-card{
+    background: aqua;
+}
+c-product-tile{
+    min-width: 200px;
+    flex:1;
+}
+c-paginator{
+    display: block;
+}

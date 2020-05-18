@@ -1,0 +1,26 @@
+<template>
+    <div class="slds-card slds-p-horizontal_small">
+        <template if:true={products.data}>
+           <div class="content" >
+               <template for:each={products.data.records} for:item="product">
+                   <c-product-tile31 class="slds-p-horizontal_small" key= {product.id} product={product} onselected={productSelectHandler}>
+
+                   </c-product-tile31>
+               </template>
+
+           </div>
+    
+           <div class="slds-p-horizontal_small">
+               <c-paginator32 class="slds-p-horizontal_small" page-number={pageNumber} page-size={products.data.pageSize} total-item-count ={products.data.totalItemCount} onprevious = {paginatorPreviousHandler} onnext ={paginatorNextHandler}>
+
+               </c-paginator32>
+
+           </div>
+        </template>
+        <template if:false={products.data.records.length}>
+            <c-placeholder33 message="No products matching current selection">
+
+            </c-placeholder33>
+        </template>
+    </div>
+</template>

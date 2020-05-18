@@ -1,3 +1,18 @@
+**************************************************************************
+		Important Websites
+**************************************************************************
+- https://github.com/trailheadapps/lwc-recipes
+- https://developer.salesforce.com/docs/component-library/documentation/en/lwc/testing
+- https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.unit_testing_using_jest_run_tests
+-  jestjs.io/docs/en/troubleshooting.
+- https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.use_navigate
+- https://developer.salesforce.com/docs/component-library/bundle/lightning-card/example
+- https://archive-1_0_5.lightningdesignsystem.com/components/grid-system
+
+
+
+**************************************************************************
+
 // DevHub org in order to create scratch orgs
 Scratch orgs has expiry of max 30 days
 1 devhub can have max 25 scratch orgs
@@ -249,7 +264,7 @@ Same is done in case of LWC -> instead of aura methods they are javascript metho
 	3. Rules to be followed by subscriber component:
 		3.a. needs to import registerListener, unregisterAllListeners from the pubsub.js file 			in the subscriber component.
 			- import {currentPageReference} from 'lightning/navigation';
-			- import registerListener, unregisterAllListeners} from 'c/pubsub';
+			- import {registerListener, unregisterAllListeners} from 'c/pubsub';
 			- connectedCallback(){
 			
 				registerListener('eventName', this.handlerName, this);			
@@ -416,3 +431,224 @@ export default class FetchRecordsViaApex25 extends LightningElement {
 		})
 	4. Dispatch the service and pass the pageReference to it:
 		this[NavigationMixin.Navigate](pageReference details 		mentioned in the previous step)
+
+------------------Types of pages and attributes----------------------------
+1. type:'standard__objectPage',
+            attributes:{
+                
+                objectApiName:"Account",
+                actionName: "new"
+            }
+
+2. type:'standard__recordPage',
+            attributes:{
+                recordId:this.recordId,
+                objectApiName:"Account",
+                actionName: "edit"
+            }
+
+3. type:'standard__recordPage',
+            attributes:{
+                recordId:this.recordId,
+                objectApiName:"Account",
+                actionName: "view"
+            }
+
+4. type:"standard__objectPage",
+            attributes:{
+                objectApiName: 'Contact',
+                actionName: 'list'
+
+            },
+            state:{filterName:"Recent"}
+        
+
+5.  type:"standard__recordRelationshipPage",
+            attributes:{
+                recordId: this.recordId,
+                objectApiName: 'Account',
+                relationshipApiName:"Contacts",
+                actionName: 'view'
+            }
+
+6. this[NavigationMixin.Navigate]({
+            type:"standard__webPage",
+            attributes:{
+                url: 'http://google.co.in'
+            }
+
+7. type:"standard__objectPage",
+            attributes:{
+                objectApiName: 'Account',
+                actionName: 'home'
+            }
+
+8. type:"standard__namedPage",
+            attributes:{
+               
+                pageName: 'home'
+            }
+
+9. this[NavigationMixin.Navigate]({
+            type:"standard__namedPage",
+            attributes:{
+                pageName: 'chatter'
+            }
+
+
+****************************************************************************
+		UNIT TEST LWC using JEST
+****************************************************************************
+- Run Jest tests at the command line or (with some configuration) within your IDE. 
+- Jest tests don’t run in a browser or connect to an org, so they run fast. - When run in “watch mode” they give you immediate feedback while you’re coding. 
+- Jest tests work only with Lightning web components, they don’t work with Aura components.
+
+- Write Jest tests to:
+
+	Test a component in isolation
+	Test a component’s public API (@api properties and methods, events)
+	Test basic user interaction (clicks)
+	Verify the DOM output of a component
+	Verify that events fire when expected
+
+- install nodejs
+- install npm
+	npm install
+- npm install @salesforce/sfdx-lwc-jest --save-dev
+- By default, an SFDX project includes these script entries in the scripts block of its package.json file. If your project’s file doesn’t include them, add them:
+	
+	{
+  ...
+  "scripts": {
+    ...
+    "test": "npm run test:unit",
+    "test:unit": "sfdx-lwc-jest",
+    "test:unit:watch": "sfdx-lwc-jest --watch",
+    "test:unit:debug": "sfdx-lwc-jest --debug",
+    "test:unit:coverage": "sfdx-lwc-jest --coverage",
+    ...
+  },
+  ...
+}
+
+
+- To run all tests for your project, use the Salesforce CLI command sfdx force:lightning:lwc:test:run from the root folder of your project. Otherwise, run the command that you added to the scripts block of your project’s package.json file.
+	- npm run test:unit
+
+-----------Run Tests Continuously During Development-----------------------
+- To run all tests for a single component every time you save changes, change directories to the component directory and run the sfdx-lwc-jest command with the --watch parameter. Use the entry that you added to the scripts block of your project’s package.json file.
+
+	npm run test:unit:watch
+
+-------------------Run Tests in Jest Debug mode---------------------------
+- To run the project’s Jest tests in debug mode, run the sfdx-lwc-jest command with the --debug parameter. Use the entry that you added to the scripts block of your project’s package.json file.
+
+	npm run test:unit:debug
+
+
+-------------Write Jest Tests for Lightning Web Components------------------
+- Write your component tests in local JavaScript files. Commit them to version control along with the component itself. Jest tests aren’t saved to Salesforce.
+
+- Jest tests are written, saved, and run differently than Jasmine or Mocha tests written for the Lightning Testing Service. Jest tests are local only, and are saved and run independently of Salesforce.
+
+- To create a test directory and a boilerplate test file within the directory.
+	-  sfdx force:lightning:lwc:test:create
+
+-The following command creates a test directory and file for testing the myButton Lightning web component.
+	- sfdx force:lightning:lwc:test:create -f force-			app/main/default/lwc/myButton/myButton.js
+
+- After you use the Salesforce CLI create command, you see a folder named __tests__ at the top level of your component’s bundle directory, such as force-app/main/default/lwc/myButton/__tests__. Otherwise, create the folder yourself. Save all tests for this component inside the __tests__ folder.
+
+
+------------------------Update .forceignore--------------------------------
+- To ensure that the __tests__ folder and its contents are never saved to Salesforce, add this glob pattern to the .forceignore file for each of your projects. The Salesforce CLI command sfdx force:lightning:lwc:test:setup does this task for you.
+
+	- **/__tests__/**
+
+
+-------------------------Write a Basic Test---------------------------------
+- imports the createElement method, This method is available only in tests
+	import { createElement } from 'lwc';
+
+- import the component to test, ie c/hello
+	import Hello from 'c/hello';
+
+- A describe block defines a test suite. A test suite contains one or more tests that belong together from a functional point of view.
+	describe('c-hello', () => {
+   	 ...
+	});
+
+- The Jest afterEach() method resets the DOM at the end of the test.
+- Since a browser isn’t running when tests run, Jest uses jsdom to provide an environment that behaves much like a browser’s DOM or document. Jest has a dependency on jsdom, which is a Node.js project, so jsdom is downloaded during installation of the sfdx-lwc-jest project the same way Jest itself is.
+- Each test file shares a single instance of jsdom, and changes aren’t reset between tests inside the file. Therefore it’s a best practice to clean up between tests, so that a test’s output doesn’t affect any other test.
+
+	afterEach(() => {
+    // The jsdom instance is shared across test cases in a single file so reset the DOM
+    while (document.body.firstChild) {
+        document.body.removeChild(document.body.firstChild);
+    }
+});
+
+
+------------------------it (or test) block----------------------------------
+- 'it' is an alias for 'test'. Use whichever word allows you to describe the expected behavior accurately.
+
+- An it block describes a single test. A test represents a single functional unit that you want to test.
+
+	it('displays greeting', () => {
+    	...
+	});
+
+- The test uses the imported createElement method to create an instance of the component to test, in this case, c-hello.
+	const element = createElement('c-hello', {
+    is: Hello
+});
+
+- The test then calls appendChild to add the component to the test’s version of document.
+The appendChild() call inserts the component into the DOM and the lifecycle hooks connectedCallback() and renderedCallback() are called.
+	
+	document.body.appendChild(element);
+
+- The next step is to use a standard DOM query method to search the DOM for the element. 
+- Use element.shadowRoot as the parent for the query. 
+- It's a test-only API that lets you peek across the shadow boundary to inspect a component’s shadow tree. It’s the test equivalent of this.template.
+
+	const div = element.shadowRoot.querySelector('div');
+
+- Finally, the expect statement is an assertion of the success condition: that the text of the element is “Hello, World!”
+	
+	const div = element.shadowRoot.querySelector('div');
+	expect(div.textContent).toBe('Hello, World!');
+
+// hello.test.js
+import { createElement } from 'lwc';
+import Hello from 'c/hello';
+
+describe('c-hello', () => {
+    afterEach(() => {
+        // The jsdom instance is shared across test cases in a single file so reset the DOM
+        while (document.body.firstChild) {
+            document.body.removeChild(document.body.firstChild);
+        }
+    });
+
+    it('displays greeting', () => {
+        // Create element
+        const element = createElement('c-hello', {
+            is: Hello
+        });
+        document.body.appendChild(element);
+
+        // Verify displayed greeting
+        const div = element.shadowRoot.querySelector('div');
+        expect(div.textContent).toBe('Hello, World!');
+    });
+});
+
+
+------------------------Creating an App------------------------------------
+- Components
+ 1. Product Tile List - To display the products in a list format.
+ 2. Product Tile - child of 1.
+ 3. Paginator
+ 4. Placeholder

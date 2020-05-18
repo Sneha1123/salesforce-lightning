@@ -8,4 +8,28 @@
             </lightning-button-group>
         </div>
     </lightning-card>
+    <lightning-card title="Get Recent Accounts and Related Contacts">
+        <div class="slds-m-top_medium slds-m-bottom_x-large">
+            <lightning-button-group>
+                <lightning-button label="Recent Record" onclick={recentRecordhandler}></lightning-button>
+                <lightning-button label="Related Record" onclick={relatedRecordhandler}></lightning-button>
+            </lightning-button-group>
+        </div>
+    </lightning-card>
+    <lightning-card title="Navigate to web Page and object Home Page">
+        <div class="slds-m-top_medium slds-m-bottom_x-large">
+            <lightning-button-group>
+                <lightning-button label="Web Page" onclick={webPageHandler}></lightning-button>
+                <lightning-button label="Home Page" onclick={homePageHandler}></lightning-button>
+            </lightning-button-group>
+        </div>
+    </lightning-card>
+    <lightning-card title="Navigate to standard home and chatter page">
+        <div class="slds-m-top_medium slds-m-bottom_x-large">
+            <lightning-button-group>
+                <lightning-button label="Home standard" onclick={sHomePageHandler}></lightning-button>
+                <lightning-button label="Chatter Page" onclick={chatterPageHandler}></lightning-button>
+            </lightning-button-group>
+        </div>
+    </lightning-card>
 </template>

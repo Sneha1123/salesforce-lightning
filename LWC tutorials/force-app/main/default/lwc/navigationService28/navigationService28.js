@@ -37,4 +37,62 @@ export default class NavigationService28 extends NavigationMixin(LightningElemen
         })
 
     }
+    recentRecordhandler(event){
+        this[NavigationMixin.Navigate]({
+            type:"standard__objectPage",
+            attributes:{
+                objectApiName: 'Contact',
+                actionName: 'list'
+
+            },
+            state:{filterName:"Recent"}
+        })
+    }
+
+    relatedRecordhandler(event){
+        this[NavigationMixin.Navigate]({
+            type:"standard__recordRelationshipPage",
+            attributes:{
+                recordId: this.recordId,
+                objectApiName: 'Account',
+                relationshipApiName:"Contacts",
+                actionName: 'view'
+            }
+        })
+    }
+    webPageHandler(event){
+        this[NavigationMixin.Navigate]({
+            type:"standard__webPage",
+            attributes:{
+                url: 'http://google.co.in'
+            }
+        })
+    }
+    homePageHandler(event){
+        this[NavigationMixin.Navigate]({
+            type:"standard__objectPage",
+            attributes:{
+                objectApiName: 'Account',
+                actionName: 'home'
+            }
+        });
+    }
+    sHomePageHandler(event){
+        this[NavigationMixin.Navigate]({
+            type:"standard__namedPage",
+            attributes:{
+               
+                pageName: 'home'
+            }
+        });
+    }
+    chatterPageHandler(event){
+        this[NavigationMixin.Navigate]({
+            type:"standard__namedPage",
+            attributes:{
+                pageName: 'chatter'
+            }
+        }
+        );
+    }
 }
