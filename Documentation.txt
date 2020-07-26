@@ -71,6 +71,24 @@ in cmd -> sfdx plugins:install @salesforce/lwc-dev-server
 	start local server
 
 ************************************************************************************************
+Open Salesforce Pages and LEX App Directly From VSCode
+***************************************************************************************************
+URL - https://medium.com/@idanblich/open-salesforce-pages-and-lex-app-directly-from-vscode-38e889e1759a
+
+Steps:
+1. Create tasks.json file in .vscode folder
+2. ctrl+shift+P -> tasks:Run Build Task -> choose // the page or component should be selected in order to mention which task to run and should also be deployed to the org.
+
+(or cmd)->	task: sfdx force:org:open --path /apex/ApiTest
+**************************************************************************************************
+MISCELLANEOUS
+***************************************************************************************************
+Run SOQL>>sfdx force:data:soql:query --query SELECT Id, Name FROM Account
+Create VF page>> sfdx force:visualforce:page:create --pagename ApiTest --label ApiTest --outputdir force-app\main\default\pages
+Retrieve via package.xml in project manifest>>sfdx force:source:retrieve --manifest c:\Users\sa\Projects\VfPageAndApi\manifest\package.xml
+
+
+***********************************************************************************************************************
 Building First Lightning web component
 ************************************************************************************************
 //sfdx force:lightning:component:create -n FirstExample -d .\force-app\main\default\lwc --type lwc
